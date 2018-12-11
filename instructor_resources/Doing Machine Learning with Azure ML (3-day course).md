@@ -20,18 +20,18 @@ Some examples of things:
 
 - putting and image of the left and text on the right side:
 <div style="float:left"><img src="./images/imagename.jpg" height="650" border="50"></div>
-<div style="margin-left:45%"><p style="font-size:150%">Text on the right.</mark></p>
+<div style="margin-left:45%"><p style="font-size:150%">Text on the right.</p>
 </div>
 
 - centering an image in the slide:
-<div style="text-align:center"><img src ="./images/imagename.jpg" width="500"/></divh>
+<div style="text-align:center"><img src ="./images/imagename.jpg" width="500"/></div>
 
 - putting two images side-by-side:
 <img src ="./images/imagename1.jpg" width="500"/>
 <img src ="./images/imagename2.jpg" width="500"/>
 
 
-- image that can be download:
+- image that can be downloaded:
 Click on the image to download.
 <div style="text-align:center"><a href="URL"><img src ="./images/imagename.jpg" width="800"/></a></div>
 
@@ -67,7 +67,6 @@ https://www.thinglink.com/scene/865640765441703937# -->
 sethmott@microsoft.com
 www.linkedin.com/in/sethmott/
 <div style="text-align:right"><img src ="./images/microsoft-logo-white-small.jpg" width="200"/></div>
-
 
 <!-- Hello, welcome to Doing Machine Learning with Azure ML. I'm Seth Mottaghinejad. I'm a data scientist at Microsoft and have the pleasure to be teaching this course.
 
@@ -493,15 +492,39 @@ True or false: a feature is a row in the data, a variable is a column in the dat
 
 --------------------------------------------------------------------------------
 
+# Answer
+
+False.
+
+> Features and variables usually refer to the same thing. Generally speaking we can think of a feature as a column in the data conveying some kind of information. Note that we usually have to do a lot of pre-processing to create useful features for modeling from the raw data.
+
+--------------------------------------------------------------------------------
+
 # Quiz
 
 The average of a set of numbers is 200, but their median is 10. How can you explain this discrepancy?
 
 --------------------------------------------------------------------------------
 
+# Answer
+
+> The data must be right-skewed (have some "outliers" in the positive direction). The mean (average) is dragged in the direction of outliers and therefore it's high. The median is not affected by outliers and remains low.
+
+--------------------------------------------------------------------------------
+
 # Quiz
 
 What are some common reasons to perform EDA?
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+> Examine the distribution of each variable (skew, outliers, single peak, etc.).
+> Examine correlations between variables.
+> Find and try to account for missing values.
+> Find more obvious trends and ask if they make sense.
+> Know what kinds of pre-processing steps may be needed prior to any modeling.
 
 --------------------------------------------------------------------------------
 
@@ -752,21 +775,53 @@ True or false: In supervised learning, we have a target variable, but in unsuper
 
 --------------------------------------------------------------------------------
 
+# Answer
+
+True
+
+> The word "supervised" refers to the fact that we know the "ground truth" and therefore the predictions from the predictive model need to get as close as possible to this ground truth. In unsupervised learning there is no ground truth and results are much more subjective and difficult to evaluate.
+
+--------------------------------------------------------------------------------
+
 # Quiz
 
 What is needed to train a model? Score data? Evaluate a model?
 
 --------------------------------------------------------------------------------
 
+# Answer
+
+> We need labeled data to train a model. We also need to pick an ML algorithm that works for the problem at hand.
+> We need a trained model and new data to score. The new data doesn't need to have labels.
+> We need score labeled data to evaluate it.
+
+--------------------------------------------------------------------------------
+
 # Quiz
 
-True or false: Labeled data is needed to train a model, but not to evaluate it.
+True or false: Labeled data is needed to train a (predictive) model, but not to evaluate it.
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+False.
+
+> Labeled data is needed to both train a model and evaluate it. This is because when we evaluate a model, we compare the model's predictions to the ground truth.
 
 --------------------------------------------------------------------------------
 
 # Quiz
 
 True or false: To score data using a trained model, the data must be labeled.
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+False.
+
+> Once we have a trained model we can score data, labeled or unlabeled, to obtain predictions. But if the data is labeled, we can also evaluate the predictions.
 
 --------------------------------------------------------------------------------
 
@@ -945,7 +1000,13 @@ Unsupervised learning is about *finding structure* (natural groupings) in the da
 
 # Quiz
 
-In $k$-means clustering, what are the advantages and disadvantages of choosing a higher k?
+In $k$-means clustering, what are the advantages and disadvantages of choosing a higher $k$?
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+> A higher $k$ means we have more clusters. The advantage is that we can capture more complex patterns in the data (in this case think of it as more *niche* clusters", if this is desirable. The disadvantage is that having more clusters means we have to do more work to understand and explain differences between them. A much larger $k$ also means longer run-time for the algorithm.
 
 --------------------------------------------------------------------------------
 
@@ -1293,6 +1354,14 @@ True or false: When building models, there is no point extracting less granular 
 
 --------------------------------------------------------------------------------
 
+# Answer
+
+False.
+
+> More granularity is only good as far as it contributes more to the "signal" and less to the "noise". So while it's not easy to give a straight-forward answer (because it depends on the use-case) it is false to say that more granular features are always better.
+
+--------------------------------------------------------------------------------
+
 # Quiz
 
 - What are the benefits of more complex models?
@@ -1300,27 +1369,47 @@ True or false: When building models, there is no point extracting less granular 
 
 --------------------------------------------------------------------------------
 
-# Quiz
+# Answer
 
-True or false: overfitting affects more simple models.
-
---------------------------------------------------------------------------------
-
-# Quiz
-
-A model shows very high error rate on both training and test data. What should be your next steps?
+> More complex models can have higher predictive accuracy than more simple models, but this usually comes at the cost of longer training time and scoring time. More complex models are also need more data, otherwise predictions can have high variance. Finally, more complex models make it harder to explain how the predictions came about. Simple models require less data, are more explainable, usually train faster and they can be even easier to deploy.
 
 --------------------------------------------------------------------------------
 
 # Quiz
 
 True or false: overfitting affects more simple models.
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+False.
+
+> Complex models are more prone to overfitting than more simple models. We can offset that effect by using more data, but we may need *a lot* more data.
+
+--------------------------------------------------------------------------------
+
+# Quiz
+
+A model shows very high error rate on both training and test data. What should be the next steps?
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+> If the error is high both on the training and the test set, then the model is failing to capture significant relationships. In this case we need to try a more complex model. We can also try to find more informative features.
 
 --------------------------------------------------------------------------------
 
 # Quiz
 
 Why does having more features not necessarily result in better models?
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+> Throwing more features at an algorithm is usually only helpful if (1) the feature is a useful predictor for what we're trying to model and (2) the feature contains new information that other features so far don't already capture (otherwise, we will have too many correlated features which can increase the variance of our predictions).
 
 --------------------------------------------------------------------------------
 
@@ -1420,9 +1509,9 @@ Two of the most common ensemble modeling techniques are <u>bagging</u> and <u>bo
 In production models are usually used to make predictions, also known as <u>scoring</u>. Predictions can be made 
 
 - **in batch**: scoring future data in one go, done on a schedule (such as nightly or hourly) as future data accumulates, can be used to power up dashboards and reporting systems.
-- **on a case-by-case basis**: scoring a single case with <u>real-time response time</u>, can be used to make <u>intelligent applications</u>.
+- **online**: scoring a single case with <u>real-time response time</u>, can be used to make <u>intelligent applications</u>.
 
-Operationalizing a model to make batch vs case-by-case predictions usually involves very different considerations.
+Operationalizing a model to make batch vs online predictions usually involves very different considerations.
 
 --------------------------------------------------------------------------------
 
@@ -1449,6 +1538,13 @@ A model's accuracy may degrade over time, as the future data that the model scor
 
 --------------------------------------------------------------------------------
 
+# Answer
+
+> A dashboard can have models generate predictions in batch so the predictions are ready to be served by the dashboard. However, it's also possible to have real-time dashboards where models need to score new data as it streams in.
+> A webapp usually needs to be able to score data *online* (as opposed to *batch*).
+
+--------------------------------------------------------------------------------
+
 # Quiz
 
 For each of the terms below state if the concept is more relevant to development or to production:
@@ -1461,9 +1557,25 @@ Model evaluation
 
 --------------------------------------------------------------------------------
 
+# Answer
+
+> Variable selection: we do this during training
+> Scoring future data: we test this during development and implement it in production
+> Scoring the test data: we do this so we can evaluate a model during training
+> How well a model scales: this is a question that usually comes up in the context of scoring in production, but we can also ask this question during development when we have big data and longer training times
+
+--------------------------------------------------------------------------------
+
 # Quiz
 
 State two reasons for why more accurate models are not always better.
+
+--------------------------------------------------------------------------------
+
+# Answer
+
+> More accurate models are generally more complex, so they are less explainable and demand longer training time and longer scoring time (which can affect production).
+
 
 --------------------------------------------------------------------------------
 
@@ -1477,7 +1589,7 @@ State two reasons for why more accurate models are not always better.
 
 --------------------------------------------------------------------------------
 
-Both batch and case-by-case scoring is available in Azure Machine learning as a web service:
+Both batch and online scoring is available in Azure Machine learning as a web service:
 
 - **Request-Response Service (RRS)**: A low latency, highly scalable service that provides an interface to the stateless models created and deployed by using Machine Learning Studio.
 - **Batch Execution Service (BES)**: An asynchronous service that scores a batch for data records.
@@ -1506,7 +1618,7 @@ Expected lab duration: 15 minutes.
 
 3. Run the experiment, then click on "Deploy Web Service". On the new page that opens click on "New Web Services Experience". On this page, we can test and monitor our web service.
 4. Under "Basic" click on the link called "Test endpoint". Under "input1", fill in the following values for the inputs: `body-style = sedan`, `horsepower = 102`, and `city-mpg = 18`. Then scroll down and click on "Test Request Response". Under "output1" you should now see the predicted price in the field called "Scored Labels".
-5. Is this an example of batch prediction or a case-by-case? Why were the other input fields not required?
+5. Is this an example of batch prediction or online? Why were the other input fields not required?
 6. Browse around the other sections and see if you can guess what each section is used for.
 
 --------------------------------------------------------------------------------
